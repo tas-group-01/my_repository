@@ -107,6 +107,11 @@ add_executable(tas_autonomous_control_node src/tas_autonomous_control_node.cpp s
 add_executable(velocity_control2 src/velocity_control2.cpp)
 add_executable(scan_listener src/scan_listener.cpp)
 add_executable(area src/area.cpp)
+#add_executable(get_laserscan_data src/get_laserscan_data.cpp)
+#add_library(process_laserscan_data src/process_laserscan_data/process_laserscan_data)
+#target_link_libraries(get_laserscan_data process_laserscan_data ${catkin_LIBRARIES})
+#add_dependencies(get_laserscan_data tas_autonmous_control_generate_messages_cpp)
+
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
