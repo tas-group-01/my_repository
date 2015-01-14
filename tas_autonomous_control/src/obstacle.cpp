@@ -32,7 +32,7 @@ void Laserscan_Callback(const sensor_msgs::LaserScan::ConstPtr& scanner_) {
        summe = summe + scanner_ -> ranges[i];
      }
 
-      if (summe > 120 ){
+      if (summe > 620 ){
      ergebnis.data = 1;//Hindernis vorhanden
     }
 
