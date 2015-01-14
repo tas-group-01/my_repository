@@ -107,6 +107,7 @@ add_executable(tas_autonomous_control_node src/tas_autonomous_control_node.cpp s
 add_executable(velocity_control2 src/velocity_control2.cpp)
 add_executable(scan_listener src/scan_listener.cpp)
 add_executable(area src/area.cpp)
+add_executable(obstacle src/obstacle.cpp)
 #add_executable(get_laserscan_data src/get_laserscan_data.cpp)
 #add_library(process_laserscan_data src/process_laserscan_data/process_laserscan_data)
 #target_link_libraries(get_laserscan_data process_laserscan_data ${catkin_LIBRARIES})
@@ -128,6 +129,10 @@ target_link_libraries(scan_listener
   ${catkin_LIBRARIES}
 )
 target_link_libraries(area
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(obstacle
   ${catkin_LIBRARIES}
 )
 

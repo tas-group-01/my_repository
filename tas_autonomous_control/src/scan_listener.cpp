@@ -40,11 +40,11 @@ void scan_Callback2(const sensor_msgs::LaserScan::ConstPtr& scanner_){
     double wert_2 = scanner_ -> intensities[2];
     double wert_3 = scanner_ -> intensities[3];
 
-    ROS_INFO("Erste 3 Array-Elemente: (%f, %f, %f,)", wert_1, wert_2, wert_3);
-
+    
     int counter=0;
     while (ros::ok()){
-    
+    ROS_INFO("Erste 3 Array-Elemente: (%f, %f, %f,)", wert_1, wert_2, wert_3);
+
     std::cout<< "1.tes Element " << scanner_ -> intensities[1] << ", 2.tes Element " << scanner_ -> intensities[2] << ", 3.tes Element, " << scanner_ -> intensities[3] << "\n";
     //hier könnte man Parameter setzen und publishen
     ros::spinOnce();
