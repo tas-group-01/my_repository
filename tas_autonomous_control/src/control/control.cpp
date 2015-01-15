@@ -337,6 +337,19 @@ void control::area_Callback(const std_msgs::Int8ConstPtr& msg){
     area_ = msg->data;
 }
 
+void control::cone_Callback(const std_msgs::Int8MultiArrayConstPtr& msg){
+    
+    
+    itt1 = msg -> data.at(0);
+    itt2 = msg -> data.at(1);
+    itt3 = msg -> data.at(2);
+   
+}
+
+void control::angle_Callback(const std_msgs::Int8ConstPtr& msg){
+    angle_ = msg->data;
+}
+
 
 
 /*void control::position_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& ort_) {

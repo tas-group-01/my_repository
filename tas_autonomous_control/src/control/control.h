@@ -4,6 +4,11 @@
 #include "ros/ros.h"
 #include "std_msgs/Int16.h"
 #include "std_msgs/Float64.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <std_msgs/MultiArrayLayout.h>
+#include <std_msgs/MultiArrayDimension.h>
+
 
 #include "std_msgs/Int16MultiArray.h"
 
@@ -16,7 +21,7 @@
 #include <std_msgs/Int8.h>
 
 #include <iostream>
-
+#include <std_msgs/Int8MultiArray.h>
 
 #include <vector>
 
@@ -39,6 +44,8 @@ public:
     ros::Subscriber VelFac_sub;
     ros::Subscriber Area_sub;
     ros::Subscriber Scan_sub;
+    ros::Subscriber Angle_sub;
+    ros::Subscriber Cone_sub;
    /* ros::Subscriber sub; nicht hier deklarieren sondern in main*/
   /*  ros::Subscriber pos_sub; */
 
@@ -55,6 +62,12 @@ public:
 
     double vel_fac;
     int area_;
+    int cone_;
+    int angle_;
+    //int Arr_[4];
+    int itt1;
+    int itt2;
+    int itt3;
     //geometry_msgs::PoseWithCovariance ort_y;
  
     double wert_winkel_1;
@@ -84,6 +97,10 @@ private:
     void vel_factorCallback(const std_msgs::Float64ConstPtr& msg);
 
     void area_Callback(const std_msgs::Int8ConstPtr& msg); 
+
+    void angle_Callback(const std_msgs::Int8ConstPtr& msg);
+
+    void cone_Callback(const std_msgs::Int8MultiArrayConstPtr& msg);
 
       
 

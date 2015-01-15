@@ -108,6 +108,8 @@ add_executable(velocity_control2 src/velocity_control2.cpp)
 add_executable(scan_listener src/scan_listener.cpp)
 add_executable(area src/area.cpp)
 add_executable(obstacle src/obstacle.cpp)
+add_executable(cone src/cone.cpp)
+add_executable(anger src/anger.cpp)
 #add_executable(get_laserscan_data src/get_laserscan_data.cpp)
 #add_library(process_laserscan_data src/process_laserscan_data/process_laserscan_data)
 #target_link_libraries(get_laserscan_data process_laserscan_data ${catkin_LIBRARIES})
@@ -136,7 +138,13 @@ target_link_libraries(obstacle
   ${catkin_LIBRARIES}
 )
 
+target_link_libraries(cone
+  ${catkin_LIBRARIES}
+)
 
+target_link_libraries(anger
+  ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############
