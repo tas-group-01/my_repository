@@ -23,8 +23,8 @@
  double summe_cone_links;
  double summe_cone_vorne;
  int first_cone = 0;
- int cone_on_right = 1;
- int cone_on_left = 1;
+ int cone_on_right = 0;
+ int cone_on_left = 0;
  std_msgs::Int8MultiArray array_;
 
 void laser_Callback(const sensor_msgs::LaserScan::ConstPtr& scanner_) {
@@ -48,28 +48,30 @@ void laser_Callback(const sensor_msgs::LaserScan::ConstPtr& scanner_) {
        first_cone = 1;   //reached first cone     
        }
 //2.)   
-   if (summe_cone_rechts < 50){
-      cone_on_right = 1;    //perceived something on the rigth could be cone or wall
+   if ((summe_cone_rechts < 50) && (summe_cone_links < 30)) {
+      cone_on_right = 1;    
+      cone_on_left = 0;
      }
-   if (summe_cone_rechts < 20){
-      cone_on_right = 0;    //perceived something on the right might be the wall an not the cone, so reset
-      }
-   if (summe_cone_links < 50){
-      cone_on_left = 1;   //perceived something in the left could be cone or wall
-    }
+
+ 
+   if ((summe_cone_links < 50) && (summe_cone_rechts < 30)) {
+      cone_on_left = 1;   
+      cone_on_right = 0;
+     }
 //3.)
-   if (summe_cone_links < 20){
-      cone_on_left = 0;   //perceived something on the left might be the wall an not the cone, so reset
-    }
+   std::cout << "Links: " << summe_cone_links <<' '<< "Vorne: " << summe_cone_vorne << ' ' << "Rechts: " << summe_cone_rechts << '\n';
+   std::cout <<"first_cone: "<< first_cone <<"\n";
+   std::cout << "cone_on_left: "<< cone_on_left  <<"\n";
+   std::cout << "cone_on_right: "<< cone_on_right <<"\n";
+   //std::cout << "cone_on_rigt in array: " << "\n";
+
+
    array_.data.clear();
    array_.data.push_back(first_cone);
    array_.data.push_back(cone_on_right);
    array_.data.push_back(cone_on_left);
    
-   std::cout << "first_cone: "<< first_cone <<"\n";
-   std::cout << "cone_on_left: "<< cone_on_left  <<"\n";
-   std::cout << "cone_on_right: "<< cone_on_right <<"\n";
-   //std::cout << "cone_on_rigt in array: " << "\n";
+
 
     int co = 0;
      while (ros::ok())
@@ -92,6 +94,7 @@ int main(int argc, char **argv){
 
 
     ros::Subscriber cone_sub = nh.subscribe("/scan",1,laser_Callback);
+
 
     ros::spin();
 

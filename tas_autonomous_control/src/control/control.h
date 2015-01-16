@@ -98,7 +98,7 @@ private:
 
     void area_Callback(const std_msgs::Int8ConstPtr& msg); 
 
-    void angle_Callback(const std_msgs::Int8ConstPtr& msg);
+    void angle_Callback(const std_msgs::Float64ConstPtr& msg);
 
     void cone_Callback(const std_msgs::Int8MultiArrayConstPtr& msg);
 

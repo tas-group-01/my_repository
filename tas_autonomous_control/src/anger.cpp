@@ -28,8 +28,18 @@ void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& sca
    //tf:: double angle = winkel_->....
     
    tf::Quaternion q(scanner_ -> pose.pose.position.x, scanner_ -> pose.pose.position.y, scanner_ -> pose.pose.orientation.z, scanner_ -> pose.pose.orientation.w);
+ 
+   
 
    theta.data= q.getAngle();
+
+
+  /* if (theta > 45) {
+      deflection_left = 1;
+      }
+   if (theta < 45) {*/
+
+
    
   //integ.data = 1;
 
@@ -55,6 +65,8 @@ int main(int argc, char **argv){
 
 
     ros::Subscriber angle_sub = nh.subscribe("amcl_pose",100,pose_Callback);
+
+    //ros::Subscriber registered_cone = nh.subscribe
 
     ros::spin();
 

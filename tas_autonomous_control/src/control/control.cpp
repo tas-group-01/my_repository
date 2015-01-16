@@ -340,13 +340,13 @@ void control::area_Callback(const std_msgs::Int8ConstPtr& msg){
 void control::cone_Callback(const std_msgs::Int8MultiArrayConstPtr& msg){
     
     
-    itt1 = msg -> data.at(0);
-    itt2 = msg -> data.at(1);
-    itt3 = msg -> data.at(2);
+    itt1 = msg -> data[0];
+    itt2 = msg -> data[1];
+    itt3 = msg -> data[2];
    
 }
 
-void control::angle_Callback(const std_msgs::Int8ConstPtr& msg){
+void control::angle_Callback(const std_msgs::Float64ConstPtr& msg){
     angle_ = msg->data;
 }
 
