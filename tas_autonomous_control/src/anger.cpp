@@ -16,22 +16,52 @@
 #include <std_msgs/Int8.h>
 #include <tf/transform_datatypes.h>
 
+ float lenkung;
  std_msgs::Int8 integ;
+std_msgs::Int8 winkl;
  std_msgs::Float64 theta;
-void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& scanner_) {
+void pose_Callback(const std_msgs::Int8::ConstPtr& scanner_) {
 
    ros::Publisher angle_pub;
    ros::NodeHandle nh;
    angle_pub=nh.advertise<std_msgs::Float64>("angle_angle",100);
    ros::Rate loop_rate(50);
+
+
+   if ((winkl > 359) || (winkl < 409)){
+        lenkung  = 1599;
+      }
+   if ((winkl > 410) || (winkl < 450)){
+        lenkung = 1699;
+      }
+   if ((winkl > 451) || (winkl < 501)){
+       lenkung = 1799;
+      }
+    if ((winkl > 502) || (winkl < 552)){
+       lenkung = 1899;
+      }
+    if ((winkl > 553) || (winkl > 603)){
+      lenkung = 1999;
+     }
+   
+
+
+
+
+
+
+
+
+
+
    
    //tf:: double angle = winkel_->....
     
-   tf::Quaternion q(scanner_ -> pose.pose.position.x, scanner_ -> pose.pose.position.y, scanner_ -> pose.pose.orientation.z, scanner_ -> pose.pose.orientation.w);
+   /*tf::Quaternion q(scanner_ -> pose.pose.position.x, scanner_ -> pose.pose.position.y, scanner_ -> pose.pose.orientation.z, scanner_ -> pose.pose.orientation.w);*/
  
    
 
-   theta.data= q.getAngle()*(180/3.14);
+   /*theta.data= q.getAngle()*(180/3.14);*/
 
 
   /* if (theta > 45) {
@@ -43,7 +73,7 @@ void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& sca
    
   //integ.data = 1;
 
-   std::cout << "Winkel: "<< theta <<"\n";
+   std::cout << "An Lenkung: "<< theta <<"\n";
 
     int couu = 0;
      while (ros::ok())
@@ -64,7 +94,7 @@ int main(int argc, char **argv){
     ros::NodeHandle nh;
 
 
-    ros::Subscriber angle_sub = nh.subscribe("amcl_pose",100,pose_Callback);
+    ros::Subscriber angle_sub = nh.subscribe("cone_cone",100,pose_Callback);
 
     //ros::Subscriber registered_cone = nh.subscribe
 
