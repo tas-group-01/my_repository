@@ -22,7 +22,7 @@ void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& sca
 
    ros::Publisher angle_pub;
    ros::NodeHandle nh;
-   angle_pub=nh.advertise<std_msgs::Int8>("angle_angle",100);
+   angle_pub=nh.advertise<std_msgs::Float64>("angle_angle",100);
    ros::Rate loop_rate(50);
    
    //tf:: double angle = winkel_->....
@@ -31,14 +31,14 @@ void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& sca
 
    theta.data= q.getAngle();
    
-  integ.data = 1;
+  //integ.data = 1;
 
    std::cout << "Winkel: "<< theta <<"\n";
 
     int couu = 0;
      while (ros::ok())
 {    
-     angle_pub.publish(integ);
+     angle_pub.publish(theta);
      ros::spinOnce();
      loop_rate.sleep();
      ++couu;
