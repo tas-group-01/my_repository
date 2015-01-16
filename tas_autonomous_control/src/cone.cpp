@@ -43,13 +43,34 @@ void laser_Callback(const sensor_msgs::LaserScan::ConstPtr& scanner_) {
    summe_cone_vorne = summe_cone_vorne + scanner_ -> ranges[i]; 
   }
 
-int smallest = 9999;
+int smallest_vorne = 9999;
 for (int j = 310; j < 408; ++j) {
-    if (scanner_ -> ranges[j] < smallest) {
-        smallest = scanner_ -> ranges[j];
+    if (scanner_ -> ranges[j] < smallest_vorne) {
+        smallest_vorne = scanner_ -> ranges[j];
     }
 }
-   
+
+int smallest_rechts = 9999;
+for (int k = 310; k < 408; ++k) {
+    if (scanner_ -> ranges[k-308] < smallest_rechts) {
+        smallest_rechts = scanner_ -> ranges[k-308];
+    }
+}
+
+int smallest_links = 9999;
+for (int l = 310; l < 408; ++l) {
+    if (scanner_ -> ranges[l+308] < smallest_links) {
+        smallest_links = scanner_ -> ranges[l+308];
+    }
+}
+
+std::cout <<"Vorne: "<< smallest_vorne <<"\n";
+std::cout <<"Rechts: "<< smallest_rechts <<"\n";
+std::cout <<"Links: " << smallest_links << "\n";
+
+
+
+/*   
 //1.)
    if (summe_cone_vorne < 50){
        first_cone = 1;   //reached first cone     
@@ -64,13 +85,13 @@ for (int j = 310; j < 408; ++j) {
    if ((summe_cone_links < 50) && (summe_cone_rechts < 30)) {
       cone_on_left = 1;   
       cone_on_right = 0;
-     }
+     }*/
 //3.)
-   std::cout << "Links: " << summe_cone_links <<' '<< "Vorne: " << summe_cone_vorne << ' ' << "Rechts: " << summe_cone_rechts << '\n';
+   /*std::cout << "Links: " << summe_cone_links <<' '<< "Vorne: " << summe_cone_vorne << ' ' << "Rechts: " << summe_cone_rechts << '\n';
    std::cout <<"first_cone: "<< first_cone <<"\n";
    std::cout << "cone_on_left: "<< cone_on_left  <<"\n";
    std::cout << "cone_on_right: "<< cone_on_right <<"\n";
-   //std::cout << "cone_on_rigt in array: " << "\n";
+   //std::cout << "cone_on_rigt in array: " << "\n"; */
 
 
    array_.data.clear();

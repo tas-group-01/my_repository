@@ -31,7 +31,7 @@ void pose_Callback(const geometry_msgs::PoseWithCovarianceStamped::ConstPtr& sca
  
    
 
-   theta.data= q.getAngle();
+   theta.data= q.getAngle()*(180/3.14);
 
 
   /* if (theta > 45) {
